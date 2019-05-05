@@ -1,0 +1,39 @@
+- job:
+    scm:
+      - 1-JJB-SimpleJob
+    builders:
+      - maven-target:
+            maven-version: Maven3
+            pom: spring-boot-samples\spring-boot-sample-atmosphere\pom.xml
+            goals: clean compile package install test
+    publishers:
+      - archive:
+          artifacts: 'spring-boot-samples\spring-boot-sample-atmosphere\target\*.jar'
+          allow-empty: 'true'
+          fingerprint: true
+          default-excludes: false
+    name: Jenkins-Job-Builder-Blog
+    project-type: freestyle
+    defaults: global
+    description: 'Do not edit this job through the web!'
+    disabled: false
+    display-name: '1-JJB-SimpleJob'
+    concurrent: true
+    quiet-period: 5
+    block-downstream: false
+    block-upstream: false
+    retry-count: 3
+    node: Agent1
+    logrotate:
+      daysToKeep: 3
+      numToKeep: 20
+      artifactDaysToKeep: -1
+      artifactNumToKeep: -1
+- scm:
+    name: 1-JJB-SimpleJob
+    scm:
+      - git:
+         url: https://github.com/Shreyasc27/Spring-Boot.git
+         branches:
+          - master
+  

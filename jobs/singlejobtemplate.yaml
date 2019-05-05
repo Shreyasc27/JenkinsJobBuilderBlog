@@ -1,0 +1,43 @@
+- job-template:
+    scm:
+      - 10-JJB-Template
+    builders:
+      - maven-target:
+            maven-version: Maven3
+            pom: spring-boot-samples\spring-boot-sample-atmosphere\pom.xml
+            goals: clean compile package install test
+    publishers:
+      - archive:
+          artifacts: 'spring-boot-samples\spring-boot-sample-atmosphere\target\*.jar'
+          allow-empty: 'true'
+          fingerprint: true
+          default-excludes: false
+    name: '{name}'
+    project-type: freestyle
+    defaults: global
+    description: 'Do not edit this job through the web!'
+    disabled: false
+    concurrent: true
+    quiet-period: 5
+    block-downstream: false
+    block-upstream: false
+    retry-count: 3
+    node: Agent1
+    logrotate:
+      daysToKeep: 3
+      numToKeep: 20
+      artifactDaysToKeep: -1
+      artifactNumToKeep: -1
+- project:
+    name: 10-JJB-Temp
+    jobs:
+        -   '{name}'
+- scm:
+    name: 10-JJB-Template
+    scm:
+      - git:
+         url: https://github.com/VodQA2019Jenkins/9-Jenkins-Job-Builder.git
+         branches:
+          - master
+  
+         

@@ -1,0 +1,51 @@
+- project:
+    name: 3-JJB-Temp
+    jobs:
+        - '3-JJB-Temp-{num}':
+            num: 1
+        - '3-JJB-Temp-{num}':
+            num: 2
+        - '3-JJB-Temp-{num}':
+            num: 3
+ 
+- job-template:
+    disabled_var:
+    command: 'df'
+    type: freestyle
+    
+    name: '3-JJB-Temp-{num}'
+    id: '3-JJB-Temp-{num}'
+    scm:
+      - 3-JJB-Template
+    builders:
+      - maven-target:
+            maven-version: Maven3
+            pom: spring-boot-samples\spring-boot-sample-atmosphere\pom.xml
+            goals: clean compile package install test
+    publishers:
+      - archive:
+          artifacts: 'spring-boot-samples\spring-boot-sample-atmosphere\target\*.jar'
+          allow-empty: 'true'
+          fingerprint: true
+          default-excludes: false
+    description: 'Do not edit this job through the web!'
+    disabled: false
+    concurrent: true
+    quiet-period: 5
+    block-downstream: false
+    block-upstream: false
+    retry-count: 3
+    node: Agent1
+    logrotate:
+      daysToKeep: 3
+      numToKeep: 20
+      artifactDaysToKeep: -1
+      artifactNumToKeep: -1
+
+- scm:
+    name: 3-JJB-Template
+    scm:
+      - git:
+         url: https://github.com/Shreyasc27/Spring-Boot.git
+         branches:
+          - master
