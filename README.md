@@ -1,8 +1,8 @@
 # Jenkins Job Builder - Step by Step Guide
-  ========================================
+
 
 ### Steps - 
-    -----
+
 
 1. Clone the repository - `git clone https://git.openstack.org/openstack-infra/jenkins-job-builder`
 
