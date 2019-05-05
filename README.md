@@ -12,9 +12,9 @@
 
 4. Execute the commands in jenkins-job-builder folder
 
-	a. Create Single Job - `jenkins-jobs --conf etc/jenkins_jobs.ini update jobs/singlejob.yaml`
+	a. Create **Single Job** - `jenkins-jobs --conf etc/jenkins_jobs.ini update jobs/singlejob.yaml`
 
-	b. Create Single Job from Template - `jenkins-jobs --conf etc/jenkins_jobs.ini update jobs/singlejobtemplate.yaml`
+	b. Create **Single Job from Template** - `jenkins-jobs --conf etc/jenkins_jobs.ini update jobs/singlejobtemplate.yaml`
 
-	c. Create Multiple Jobs from Template - `jenkins-jobs --conf etc/jenkins_jobs.ini update jobs/multiplejobtemplate.yaml`
+	c. Create **Multiple Jobs from Template** - `jenkins-jobs --conf etc/jenkins_jobs.ini update jobs/multiplejobtemplate.yaml`
 
